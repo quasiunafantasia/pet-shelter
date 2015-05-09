@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'petsShelterApp'
+angular.module 'petShelterApp'
 .controller 'AdminCtrl', ($scope, $http, Auth, User) ->
 
   $http.get '/api/users'

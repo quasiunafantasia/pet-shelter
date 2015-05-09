@@ -11,12 +11,16 @@
     "filters": {
       "coffee": true,
       "html": true,
-      "sass": true,
+      "less": true,
       "uirouter": true,
       "bootstrap": true,
       "uibootstrap": true,
       "mongoose": true,
-      "auth": true
+      "auth": true,
+      "oauth": true,
+      "googleAuth": true,
+      "facebookAuth": true,
+      "twitterAuth": true
     }
   },
   "generator-ng-component": {
@@ -32,7 +36,7 @@
     "extensions": [
       "coffee",
       "html",
-      "scss"
+      "less"
     ],
     "directiveSimpleTemplates": "",
     "directiveComplexTemplates": "",

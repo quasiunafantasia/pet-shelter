@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'petsShelterApp'
+angular.module 'petShelterApp'
 .controller 'NavbarCtrl', ($scope, $location, Auth) ->
   $scope.menu = [
     title: 'Home'

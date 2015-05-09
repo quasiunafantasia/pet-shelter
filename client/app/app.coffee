@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'petsShelterApp', [
+angular.module 'petShelterApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
