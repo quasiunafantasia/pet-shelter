@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/petsshelter-dev'
+    uri: 'mongodb://localhost/petshelter-dev'
   },
 
   seedDB: true

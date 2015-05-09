@@ -1,7 +1,7 @@
 'use strict'
 
-angular.module 'petsShelterApp'
-.controller 'LoginCtrl', ($scope, Auth, $location) ->
+angular.module 'petShelterApp'
+.controller 'LoginCtrl', ($scope, Auth, $location, $window) ->
   $scope.user = {}
   $scope.errors = {}
   $scope.login = (form) ->
@@ -19,3 +19,5 @@ angular.module 'petsShelterApp'
       .catch (err) ->
         $scope.errors.other = err.message
 
+  $scope.loginOauth = (provider) ->
+    $window.location.href = '/auth/' + provider

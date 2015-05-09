@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'petsShelterApp'
+angular.module 'petShelterApp'
 .controller 'SettingsCtrl', ($scope, User, Auth) ->
   $scope.errors = {}
   $scope.changePassword = (form) ->
