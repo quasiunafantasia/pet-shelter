@@ -7,3 +7,16 @@
 ###[Angular UI Bootstrap](http://angular-ui.github.io/bootstrap/)
 ###[Angular UI Router](https://github.com/angular-ui/ui-router)
 
+### App setup:
+ ``` bash
+bower install 
+```
+``` bash
+npm install 
+```
+### Run the app:
+* start mongo
+``` bash
+grunt serve 
+```
+
