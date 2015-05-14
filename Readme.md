@@ -22,7 +22,7 @@ npm install -g bower
 bower install 
 ```
 ### Run the app:
-* start mongo
+* start mongod
 ``` bash
 grunt serve 
 ```
