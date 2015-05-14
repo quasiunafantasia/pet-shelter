@@ -9,10 +9,17 @@
 
 ### App setup:
  ``` bash
-bower install 
+npm install 
 ```
 ``` bash
-npm install 
+npm install -g grunt-cli
+```
+``` bash
+npm install -g bower
+```
+
+``` bash
+bower install 
 ```
 ### Run the app:
 * start mongo
