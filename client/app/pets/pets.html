@@ -1,0 +1,15 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<ul class="nav nav-pills nav-justified">
+  <li ui-sref-active="active">
+    <a href ui-sref="pets.view">My pets</a>
+  </li>
+  <li ui-sref-active="active">
+    <a href ui-sref="pets.add">Add pet</a>
+  </li>
+  <li ui-sref-active="active">
+    <a href ui-sref="pets.get">Get pet</a>
+  </li>
+</ul>
+
+<div ui-view>
+</div>
