@@ -33,6 +33,27 @@
             <input name="petWatering" type="number" class="form-control" ng-model="pet.feeding" ngPattern="/^\d+$/A" required min="0">
           </div>
         </div>
+
+         <div class="panel panel-default">
+          <div class="panel-heading">
+             <h3 class="panel-title">Tags</h3>
+          </div>
+          <input class="form-control" ng-model="currentTag">
+          <a ng-click="addTag(currentTag)"><span class="glyphicon glyphicon-plus pull-right"></span></a>
+
+          <div class="panel-body">
+             <ul class="list-group">
+              <li ng-repeat="(index, tag) in pet.tags track by index" class="list-group-item list-group-item-info">
+                <span class="badge" ng-click="removeTag(index)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </span>
+                {{tag}}
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
          <button class="btn btn-default" type="button" ng-click="addPet()" ng-disabled="addPetForm.$invalid">Done</button>
       </div>
     </form>
