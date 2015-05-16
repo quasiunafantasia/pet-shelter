@@ -2,21 +2,22 @@
 
 angular.module 'petShelterApp'
 .service 'PetsResource', ($resource) ->
-  res = $resource('/api/user/:userId/pet/:petId', {}, {
-    update: {
-      method: 'PUT'
-    }
-    });
+  createRes = (userId, petId) ->
+    res = $resource('/api/users/:userId/pets/:petId', {userId, petId}, {
+      update: {
+        method: 'PUT'
+      }
+      });
   {
     query: (userId) ->
-      res.query({userId});
+      createRes(userId).query({userId});
     get: (userId, petId) ->
-      res.get({userId, petId});
+      createRes(userId, petId).get({userId, petId});
     save: (userId, pet) ->
-      res.save(angular.extend({userId}, pet));
+      createRes(userId).save(angular.extend({userId}, pet));
     update: (userId, pet) ->
       res.update(angular.extend({userId}, pet));
     delete: (userId, petId) ->
-      res.delete({userId, petId});
+      createRes(userId, petId).delete({userId, petId});
   }
 
