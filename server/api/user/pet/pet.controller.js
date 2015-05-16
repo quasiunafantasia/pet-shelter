@@ -15,7 +15,8 @@ function createPet () {
   return {
     src: "https://d2k1ftgv7pobq7.cloudfront.net/images/stickers/frown.png",
     name: "Zhora",
-    happiness: Math.random() * 100
+    happiness: Math.random() * 100,
+    id: 1
   };
 }
 
@@ -31,7 +32,7 @@ exports.index = function(req, res) {
 
 // Get a single thing
 exports.show = function(req, res) {
-  res.json(JSON.stringify({thisIs:'get'}));
+  res.json(createPet());
 };
 
 // Creates a new thing in the DB.
