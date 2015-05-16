@@ -14,26 +14,26 @@ var Pet = require('./pet.model');
 
 // Get list of things
 exports.index = function(req, res) {
-  res.end("[{thisIs:'list'}]");
+  res.json(JSON.stringify([{thisIs:'list'}]));
 };
 
 // Get a single thing
 exports.show = function(req, res) {
-  res.end("{thisIs:'get'}");
+  res.json(JSON.stringify({thisIs:'get'}));
 };
 
 // Creates a new thing in the DB.
 exports.create = function(req, res) {
-  res.end("{thisIs:'post'}");
+  res.json(JSON.stringify({thisIs:'post'}));
 };
 
 // Updates an existing thing in the DB.
 exports.update = function(req, res) {
-  res.end("{thisIs:'update'}");
+  res.json(JSON.stringify({thisIs:'update'}));
 
 };
 
 // Deletes a thing from the DB.
 exports.destroy = function(req, res) {
-  res.end({thisIs:'delete'});
+  res.json(JSON.stringify({thisIs:'delete'}));
 };
