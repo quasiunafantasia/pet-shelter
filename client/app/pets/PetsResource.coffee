@@ -10,14 +10,14 @@ angular.module 'petShelterApp'
       });
   {
     query: (userId) ->
-      createRes(userId).query({userId});
+      createRes(userId).query();
     get: (userId, petId) ->
-      createRes(userId, petId).get({userId, petId});
+      createRes(userId, petId).get();
     save: (userId, pet) ->
-      createRes(userId).save(angular.extend({userId}, pet));
-    update: (userId, pet) ->
-      res.update(angular.extend({userId}, pet));
+      createRes(userId).save(pet);
+    update: (userId, petId, pet) ->
+      createRes(userId, petId).update(pet);
     delete: (userId, petId) ->
-      createRes(userId, petId).delete({userId, petId});
+      createRes(userId, petId).delete();
   }
 
