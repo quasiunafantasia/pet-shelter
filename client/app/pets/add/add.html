@@ -1,1 +1,38 @@
-add your pet here
+<form class="panel panel-default" name="addPlantForm" novalidate>
+        <div class="panel-heading">
+            <h3 class="panel-title">Add a pet</h3>
+        </div>
+        <div class="panel-body">
+           <div class="image-container">
+            <img ng-src="{{pet.src}}">
+          </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+             <h3 class="panel-title">Image url</h3>
+          </div>
+          <div class="panel-body">
+            <input type="text" class="form-control" placeholder="input a url for the custom image" ng-model="pet.src">
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+             <h3 class="panel-title">Pet`s name</h3>
+          </div>
+          <div class="panel-body">
+            <input name="plantName" type="text" class="form-control" ng-model="pet.name" required>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+             <h3 class="panel-title">Pets`s feeding period</h3>
+          </div>
+          <div class="panel-body">
+            <input name="plantWatering" type="number" class="form-control" ng-model="pet.feeding" ngPattern="/^\d+$/A" required min="0">
+          </div>
+        </div>
+         <button class="btn btn-default" type="button" ng-click="addPlant()" ng-disabled="addPlantForm.$invalid">Done</button>
+      </div>
+    </form>
