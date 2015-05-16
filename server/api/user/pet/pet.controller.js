@@ -11,10 +11,22 @@
 
 var _ = require('lodash');
 var Pet = require('./pet.model');
+function createPet () {
+  return {
+    src: "https://d2k1ftgv7pobq7.cloudfront.net/images/stickers/frown.png",
+    name: "Zhora",
+    happiness: Math.random() * 100
+  };
+}
 
 // Get list of things
 exports.index = function(req, res) {
-  res.json(JSON.stringify([{thisIs:'list'}]));
+  console.log('query');
+  var pets = [];
+  for (var i = 0; i < 10; i++) {
+    pets.push(createPet());
+  }
+  res.json(pets);
 };
 
 // Get a single thing
