@@ -6,13 +6,6 @@ angular.module 'petShelterApp'
   $scope.pet = {
     tags: []
   };
-  $scope.addTag = (tag) ->
-    if tag?.length and ($scope.pet.tags.indexOf(tag) == -1)
-      $scope.pet.tags.push tag;
-    $scope.currentTag = '';
-
-  $scope.removeTag = (tagIndex) ->
-    $scope.pet.tags.splice tagIndex, 1;
 
   $scope.addPet = () ->
     PetsResource.save(id, $scope.pet).$promise

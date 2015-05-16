@@ -40,22 +40,7 @@
           </div>
 
           <div class="panel-body">
-            <div class="input-group">
-              <span class="input-group-btn" ng-click="addTag(currentTag)">
-                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button>
-              </span>
-              <input class="form-control" ng-model="currentTag" placeholder="Add tags here">
-            </div><!-- /input-group -->
-
-            <ul class="list-group">
-              <li ng-repeat="(index, tag) in pet.tags track by index" class="list-group-item list-group-item-info">
-                <span class="badge" ng-click="removeTag(index)">
-                  <span class="glyphicon glyphicon-trash"></span>
-                </span>
-                {{tag}}
-              </li>
-
-            </ul>
+            <taglist tags="pet.tags"></taglist>
           </div>
         </div>
 
