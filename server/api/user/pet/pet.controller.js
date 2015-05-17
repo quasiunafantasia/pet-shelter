@@ -50,7 +50,7 @@ exports.index = function(req, res) {
     } else if (req.query.tag) {
       query = searchByTag(req.query.tag);
     } else {
-      res.status(400).end('bad request');
+      query = Pet; /* потому что могу :( */
     }
     query.$where('!this.master').exec(writeData.bind(res));
   } else {
