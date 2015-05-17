@@ -16,7 +16,8 @@ var PetSchema = new Schema({
     default: false
   },
   master: Schema.Types.ObjectId,
-  feedPeriod: Number
+  feedPeriod: Number,
+  tags: [String]
 });
 
 module.exports = mongoose.model('Pet', PetSchema);
