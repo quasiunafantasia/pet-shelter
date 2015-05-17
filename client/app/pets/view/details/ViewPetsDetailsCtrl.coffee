@@ -5,10 +5,12 @@ angular.module 'petShelterApp'
   userId = Auth.getCurrentUser()._id;
   console.log $stateParams
   $scope.pet = PetsResource.get(userId, $stateParams.id)
-  $scope.euthanize = () ->
+  $scope.delete = () ->
     PetsResource.delete(userId, $stateParams.id).$promise
     .then(
-      () -> $state.go('pets.view')
+      () ->
+      $scope.$emit('delete');
+      $state.go('pets.view')
     );
   $scope.save = () ->
     PetsResource.update(userId, $stateParams.id).$promise

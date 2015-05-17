@@ -13,17 +13,20 @@ angular.module 'petShelterApp'
       when level < 50 then 'warning'
       when level < 70 then 'info'
       else 'success'
+  getPets = () ->
 
-  PetsResource.query(id).$promise
-    .then(
-        (responce) ->
-          $scope.pets = responce.map((pet) ->
-            pet.happinessStatus = getHappinessStatus(pet.happiness);
-            return pet;
-          );
-        (responce) -> console.log('err', responce);
-    );
+    PetsResource.query(id).$promise
+      .then(
+          (responce) ->
+            $scope.pets = responce.map((pet) ->
+              pet.happinessStatus = getHappinessStatus(pet.happiness);
+              return pet;
+            );
+          (responce) -> console.log('err', responce);
+      );
 
+  getPets();
+  $scope.$on('delete', getPets);
   $scope.showWarning = (level) -> level < 50;
 
 
