@@ -25,5 +25,7 @@ angular.module 'petShelterApp'
       createRes('all', id).get();
     updateSearchResult: (id, params) ->
       createRes('all', id).update(params);
+    takePet: (userId, petId) ->
+      createRes('all', petId).update({master: userId});
   }
 

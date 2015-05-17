@@ -12,42 +12,73 @@
 var _ = require('lodash');
 var Pet = require('./pet.model');
 //var User = require('./../user.model');
+
+function getUserId(req) {
+  //TODO rewrite
+  var reqParams = req.originalUrl.split('/');
+  return reqParams[reqParams.indexOf('users') + 1];
+}
 function createPet () {
   return new Pet({
     src: "https://d2k1ftgv7pobq7.cloudfront.net/images/stickers/frown.png",
     name: "Zhorik"
   });
+}
 
+function searchByName(name) {
+  return Pet.find({name: { $regex : new RegExp(name, 'i') }});
+}
+
+function searchByTag(tag) {
+  return Pet.find({
+    tags: { $regex : new RegExp(tag, 'i') }
+  });
+};
+
+function writeData(err, data) {
+  this.json(data);
 }
 
 // Get list of things
 exports.index = function(req, res) {
-  //debugger;
-  var reqParams = req.originalUrl.split('/');
-  var userId = reqParams[reqParams.indexOf('users') + 1];
-  console.log(userId);
-  Pet.find({master: userId}).exec(function(err, data) {
-    res.json(data);
-  });
+  var userId = getUserId(req);
+  if (userId === 'all') {
+  /* perform "global" search" */
+    var query;
+    if (req.query.name) {
+      query = searchByName(req.query.name);
+    } else if (req.query.tag) {
+      query = searchByTag(req.query.tag);
+    } else {
+      res.status(400).end('bad request');
+    }
+    query.$where('!this.master').exec(writeData.bind(res));
+  } else {
+    Pet.find({master: getUserId(req)}).exec(writeData.bind(res));
+  }
 };
 
 // Get a single thing
 exports.show = function(req, res) {
-  console.log(req.param('petId'));
-  Pet.find({_id: req.param('petId')}).exec(function(err, data) {
-    console.log(data);
-    res.json(data[0]);
-  });
+  Pet.findOne({_id: req.param('petId')}).exec(writeData.bind(res));
 };
 
 // Creates a new thing in the DB.
 exports.create = function(req, res) {
-  res.json(JSON.stringify({thisIs:'post'}));
+  console.log(Pet.create);
+  Pet.create(req.body, writeData.bind(res));
 };
 
 // Updates an existing thing in the DB.
 exports.update = function(req, res) {
-  res.json(JSON.stringify({thisIs:'update'}));
+  var userId = getUserId(req);
+  if (userId === 'all') {
+    Pet.findByIdAndUpdate(req.param('petId'), {
+      $set: req.body
+    }).exec(writeData.bind(res));
+  } else {
+    res.json(JSON.stringify({thisIs:'update'}));
+  }
 
 };
 
