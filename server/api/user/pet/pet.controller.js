@@ -84,5 +84,8 @@ exports.update = function(req, res) {
 
 // Deletes a thing from the DB.
 exports.destroy = function(req, res) {
-  res.json(JSON.stringify({thisIs:'delete'}));
+  console.log('test');
+  Pet.findByIdAndUpdate(req.param('petId'), {
+      $unset: {master: 1}
+    }).exec(writeData.bind(res));
 };
