@@ -2,7 +2,7 @@
   <br>
   <div class="row">
     <div class="col-sm-5 col-md-4" ng-repeat="pet in pets track by $index">
-      <a ui-sref="pets.view.details({id: pet.id})">
+      <a ui-sref="pets.view.details({id: pet._id})">
         <div class="thumbnail">
           <img ng-src="{{pet.src}}" alt="...">
           <div class="caption">
