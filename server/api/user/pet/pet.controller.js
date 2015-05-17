@@ -12,12 +12,11 @@
 var _ = require('lodash');
 var Pet = require('./pet.model');
 function createPet () {
-  return {
+  return new Pet({
     src: "https://d2k1ftgv7pobq7.cloudfront.net/images/stickers/frown.png",
-    name: "Zhora",
-    happiness: Math.random() * 100,
-    id: 1
-  };
+    name: "Zhorik"
+  });
+
 }
 
 // Get list of things

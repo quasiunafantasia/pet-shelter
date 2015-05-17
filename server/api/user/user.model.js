@@ -15,6 +15,10 @@ var UserSchema = new Schema({
   hashedPassword: String,
   provider: String,
   salt: String,
+  pets: {
+    type: [Schema.Types.ObjectId],
+    default: []
+  },
   facebook: {},
   twitter: {},
   google: {},
