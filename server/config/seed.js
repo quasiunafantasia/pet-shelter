@@ -31,28 +31,28 @@ Thing.find({}).remove(function() {
   });
 });
 
-var testUser = User.create({
+var testUser = new User({
     provider: 'local',
     name: 'Test User',
     email: 'test@test.com',
     password: 'test'
   });
 
-var adminUser = User.create({
+var adminUser = new User({
     provider: 'local',
     role: 'admin',
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin'
   });
+User.create(testUser);
+User.create(adminUser);
 
 User.find({}).remove(function() {
-  testUser, 
+  testUser,
   adminUser,
   function() {
       console.log('finished populating users');
-      console.log(testUser._id);
-      console.log(adminUser_id);
     }
 });
 
@@ -95,7 +95,7 @@ Pet.find({}).remove(function() {
     feedDates: new Date(),
     happines: 100,
     hasMaster: true,
-    master: testUser.emitted.complete[0]._id,
+    master: testUser._id,
     feedPeriod: 0,
     tags : ["Strong"]
   },{
@@ -104,7 +104,7 @@ Pet.find({}).remove(function() {
     feedDates: new Date(),
     happines: 100,
     hasMaster: true,
-    master : adminUser.emitted.complete[0]._id,
+    master : adminUser._id,
     feedPeriod: 0,
     tags : ["Sexy", "Very sexy", "Awesome"]
   }, function() {

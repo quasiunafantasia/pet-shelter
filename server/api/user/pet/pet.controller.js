@@ -11,6 +11,7 @@
 
 var _ = require('lodash');
 var Pet = require('./pet.model');
+//var User = require('./../user.model');
 function createPet () {
   return new Pet({
     src: "https://d2k1ftgv7pobq7.cloudfront.net/images/stickers/frown.png",
@@ -21,17 +22,22 @@ function createPet () {
 
 // Get list of things
 exports.index = function(req, res) {
-  console.log('query');
-  var pets = [];
-  for (var i = 0; i < 10; i++) {
-    pets.push(createPet());
-  }
-  res.json(pets);
+  //debugger;
+  var reqParams = req.originalUrl.split('/');
+  var userId = reqParams[reqParams.indexOf('users') + 1];
+  console.log(userId);
+  Pet.find({master: userId}).exec(function(err, data) {
+    res.json(data);
+  });
 };
 
 // Get a single thing
 exports.show = function(req, res) {
-  res.json(createPet());
+  console.log(req.param('petId'));
+  Pet.find({_id: req.param('petId')}).exec(function(err, data) {
+    console.log(data);
+    res.json(data[0]);
+  });
 };
 
 // Creates a new thing in the DB.

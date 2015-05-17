@@ -5,7 +5,7 @@ var controller = require('./user.controller');
 var config = require('../../config/environment');
 var auth = require('../../auth/auth.service');
 
-var router = express.Router();
+var router = express.Router({mergeParams: true});
 
 router.use('/:id/pets', require('./pet'));
 router.get('/', auth.hasRole('admin'), controller.index);
