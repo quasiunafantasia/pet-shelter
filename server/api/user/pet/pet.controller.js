@@ -26,13 +26,13 @@ function createPet () {
 }
 
 function searchByName(name) {
-  return Pet.find({name: { $regex : new RegExp(name, 'i') }});
+  return Pet.find({name: { $regex : new RegExp(name, 'i') }}).read('sp');
 }
 
 function searchByTag(tag) {
   return Pet.find({
     tags: { $regex : new RegExp(tag, 'i') }
-  });
+  }).read('sp');
 };
 
 function writeData(err, data) {
@@ -52,15 +52,15 @@ exports.index = function(req, res) {
     } else {
       query = Pet; /* потому что могу :( */
     }
-    query.$where('!this.master').exec(writeData.bind(res));
+    query.$where('!this.master').read('sp').exec(writeData.bind(res));
   } else {
-    Pet.find({master: getUserId(req)}).exec(writeData.bind(res));
+    Pet.find({master: getUserId(req)}).read('sp').exec(writeData.bind(res));
   }
 };
 
 // Get a single thing
 exports.show = function(req, res) {
-  Pet.findOne({_id: req.param('petId')}).exec(writeData.bind(res));
+  Pet.findOne({_id: req.param('petId')}).read('sp').exec(writeData.bind(res));
 };
 
 // Creates a new thing in the DB.
@@ -75,7 +75,7 @@ exports.update = function(req, res) {
   if (userId === 'all') {
     Pet.findByIdAndUpdate(req.param('petId'), {
       $set: req.body
-    }).exec(writeData.bind(res));
+    }).read('sp').exec(writeData.bind(res));
   } else {
     res.json(JSON.stringify({thisIs:'update'}));
   }
@@ -87,5 +87,5 @@ exports.destroy = function(req, res) {
   console.log('test');
   Pet.findByIdAndUpdate(req.param('petId'), {
       $unset: {master: 1}
-    }).exec(writeData.bind(res));
+    }).read('sp').exec(writeData.bind(res));
 };
