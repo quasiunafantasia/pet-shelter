@@ -18,8 +18,9 @@ angular.module 'petShelterApp'
       password: user.password
 
     .success (data) ->
+      console.log 'data is ', data;
       $cookieStore.put 'token', data.token
-      currentUser = User.get()
+      currentUser = User.get(data.user)
       deferred.resolve data
       callback?()
 
@@ -93,6 +94,7 @@ angular.module 'petShelterApp'
   @return {Object} user
   ###
   getCurrentUser: ->
+    console.log currentUser;
     currentUser
 
 
