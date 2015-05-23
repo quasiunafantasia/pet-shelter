@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'petShelterApp'
-.controller 'SignupCtrl', ($scope, Auth, $location, $window) ->
+.controller 'SignupCtrl', ($scope, Auth, $location, $window, $state) ->
   $scope.user = {}
   $scope.errors = {}
   $scope.register = (form) ->
@@ -15,7 +15,7 @@ angular.module 'petShelterApp'
         password: $scope.user.password
 
       .then ->
-        $location.path '/'
+        $state.go 'pets'
 
       .catch (err) ->
         err = err.data
